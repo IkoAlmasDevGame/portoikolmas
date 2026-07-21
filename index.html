@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth bg-[#050505]">
+
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Web Developer | Professional Portofolio</title>
+
+      <!-- Google Fonts: Plus Jakarta Sans -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <meta name="description" content="Portfolio IkoAlmas Developer Version 2.0">
+      <meta name="keywords" content="IkoAlmasDev, Porto IkoAlmas, IkoAlmasDevGame Portofolio">
+      <link
+         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+         rel="stylesheet">
+
+      <!-- FontAwesome v6.5.2 (Standar desain kompatibel dengan v7) -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link rel="shortcut icon" href="foto/IMG-20251018-WA0003.jpg" type="image/x-icon">
+
+      <!-- Tailwind CSS -->
+      <script src="https://cdn.tailwindcss.com"></script>
+
+      <script>
+         tailwind.config = {
+            darkMode: 'class',
+            theme: {
+               extend: {
+                  fontFamily: {
+                     sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                  },
+                  colors: {
+                     bgPure: '#030303',
+                     bgSurface: '#0a0a0a',
+                     borderSubtle: '#222222',
+                     textMuted: '#888888',
+                     accent: '#ffffff',
+                  },
+                  animation: {
+                     'spin-slow': 'spin 8s linear infinite',
+                     'float': 'float 6s ease-in-out infinite',
+                  },
+                  keyframes: {
+                     float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-10px)' },
+                     }
+                  }
+               }
+            }
+         }
+      </script>
+
+      <style>
+         body {
+            background-color: #030303;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+         }
+
+         /* Awwwards Style Depth Effect Buttons */
+         .btn-depth {
+            background: linear-gradient(180deg, #1f1f1f 0%, #121212 100%);
+            border: 1px solid #333333;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+               0 4px 6px -1px rgba(0, 0, 0, 0.5),
+               0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+         }
+
+         .btn-depth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+         }
+
+         .btn-depth:hover {
+            transform: translateY(-3px) scale(1.02);
+            border-color: #555555;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+               0 10px 15px -3px rgba(0, 0, 0, 0.6),
+               0 4px 6px -2px rgba(0, 0, 0, 0.4);
+         }
+
+         .btn-depth:hover::before {
+            opacity: 1;
+         }
+
+         .btn-depth:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5);
+         }
+
+         /* Accent Depth Button (e.g. Primary Action) */
+         .btn-depth-accent {
+            background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+            border: 1px solid #ffffff;
+            color: #000000;
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 1),
+               0 6px 10px -2px rgba(255, 255, 255, 0.15),
+               0 2px 5px -1px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+         }
+
+         .btn-depth-accent:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 1),
+               0 15px 25px -5px rgba(255, 255, 255, 0.25),
+               0 8px 10px -6px rgba(255, 255, 255, 0.15);
+         }
+
+         .btn-depth-accent:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+         }
+
+         /* Scroll Reveal Utility */
+         .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+         }
+
+         .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+         }
+
+         /* Custom noise texture overlay for premium feel */
+         .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+         }
+
+         /* Gradient Text */
+         .text-gradient {
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+         }
+
+         /* Glass Surface */
+         .surface-glass {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+         }
+      </style>
+   </head>
+
+   <body class="selection:bg-white selection:text-black">
+      <div class="noise-bg"></div>
+
+      <!-- Proportional Fix: Added max-w-7xl to constrain the navbar on large screens -->
+      <nav class="fixed w-full z-50 transition-all duration-500 py-4 px-4 sm:px-6 lg:px-8 flex justify-center"
+         id="navbar">
+         <div class="w-full max-w-7xl surface-glass rounded-full px-6 py-3 flex items-center justify-between">
+            <div class="flex-shrink-0">
+               <a href="#" class="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center text-xs">
+                     <i class="fa-solid fa-code"></i>
+                  </div>
+                  IkoAlmasDev
+               </a>
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-2">
+               <a href="#home"
+                  class="px-5 py-2 text-sm font-medium text-textMuted hover:text-white transition-colors rounded-full hover:bg-white/5">Beranda</a>
+               <a href="#expertise"
+                  class="px-5 py-2 text-sm font-medium text-textMuted hover:text-white transition-colors rounded-full hover:bg-white/5">Keahlian</a>
+               <a href="#work"
+                  class="px-5 py-2 text-sm font-medium text-textMuted hover:text-white transition-colors rounded-full hover:bg-white/5">Karya</a>
+            </div>
+            <div class="hidden md:block">
+               <a href="#contact"
+                  class="btn-depth px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 text-white">
+                  Let's Talk <i class="fa-solid fa-arrow-right-long text-xs opacity-70"></i>
+               </a>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white p-2 focus:outline-none" id="mobile-menu-btn" aria-label="Toggle Menu">
+               <i class="fa-solid fa-bars-staggered text-xl"></i>
+            </button>
+         </div>
+
+         <!-- Mobile Dropdown -->
+         <div
+            class="md:hidden absolute top-20 left-4 right-4 sm:left-6 sm:right-6 surface-glass rounded-2xl hidden opacity-0 transition-opacity duration-300 overflow-hidden shadow-2xl border border-white/10"
+            id="mobile-menu">
+            <div class="flex flex-col p-2">
+               <a href="#home"
+                  class="p-4 text-base font-medium text-white border-b border-white/5 rounded-t-xl hover:bg-white/5">Beranda</a>
+               <a href="#expertise"
+                  class="p-4 text-base font-medium text-white border-b border-white/5 hover:bg-white/5">Keahlian</a>
+               <a href="#work"
+                  class="p-4 text-base font-medium text-white border-b border-white/5 hover:bg-white/5">Karya</a>
+               <a href="#contact"
+                  class="p-4 text-base font-medium text-white flex items-center justify-between hover:bg-white/5 rounded-b-xl">Hubungi
+                  Saya <i class="fa-solid fa-arrow-right text-sm text-textMuted"></i></a>
+            </div>
+         </div>
+      </nav>
+
+      <!-- Proportional Fix: Unified padding and max-w container, responsive typography -->
+      <section id="home"
+         class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+         <!-- Abstract Glow -->
+         <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] max-w-[800px] aspect-square bg-white/5 rounded-full blur-[100px] sm:blur-[150px] pointer-events-none">
+         </div>
+
+         <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10">
+
+            <div
+               class="lg:col-span-7 xl:col-span-8 flex flex-col items-center text-center lg:items-start lg:text-left reveal">
+               <div
+                  class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
+                  <span class="relative flex h-2 w-2">
+                     <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  <span class="text-xs font-semibold tracking-wider uppercase text-gray-300">Available for
+                     Freelance</span>
+               </div>
+
+               <h1
+                  class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-[1.1] mb-6">
+                  Crafting <br class="hidden lg:block">
+                  <span class="text-gradient">Digital</span> <br class="hidden lg:block">
+                  Experiences.
+               </h1>
+
+               <p class="text-base sm:text-lg lg:text-xl text-textMuted max-w-2xl mb-10 font-light leading-relaxed">
+                  Saya seorang <strong class="text-white font-medium">Website Developer</strong> yang mengubah
+                  kompleksitas teknis menjadi antarmuka elegan dan performa luar biasa.
+               </p>
+
+               <div
+                  class="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-5 w-full sm:w-auto">
+                  <a href="#work"
+                     class="btn-depth-accent w-full sm:w-auto px-8 py-4 rounded-full text-sm sm:text-base font-bold flex items-center justify-center gap-3">
+                     Lihat Portfolio
+                  </a>
+                  <a href="#contact"
+                     class="btn-depth w-full sm:w-auto px-8 py-4 rounded-full text-sm sm:text-base font-medium flex items-center justify-center gap-3">
+                     Mulai Proyek <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                  </a>
+               </div>
+            </div>
+
+            <!-- Proportional Fix: Aspect ratio instead of fixed height/width, float animation -->
+            <div class="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end reveal"
+               style="transition-delay: 200ms;">
+               <div
+                  class="relative w-full max-w-[300px] sm:max-w-[340px] aspect-[3/4] rounded-[2rem] p-2 surface-glass transform lg:rotate-3 hover:rotate-0 transition-transform duration-700 animate-float">
+                  <div class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+                     <div class="absolute inset-0 bg-black/20 z-10"></div>
+                     <!-- Provide a high quality portrait fallback -->
+                     <img src="foto/IMG-20251018-WA0003.jpg" alt="Profile Picture"
+                        class="w-full h-full object-cover transition-all duration-700 scale-105 hover:scale-100">
+
+                     <!-- Floating Badge -->
+                     <div
+                        class="absolute bottom-6 left-1/2 -translate-x-1/2 btn-depth px-4 py-3 rounded-2xl z-20 w-[85%] flex items-center gap-3 sm:gap-4 border border-white/10 backdrop-blur-md">
+                        <i class="fa-brands fa-react text-2xl animate-[spin_4s_linear_infinite]"></i>
+                        <div>
+                           <p class="text-[10px] sm:text-xs text-textMuted font-medium uppercase tracking-wider">
+                              Spesialisasi</p>
+                           <p class="text-sm font-bold text-white">Full-Stack Dev</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      <!-- Proportional Fix: Unified section padding, perfect square grid cards (aspect-square) -->
+      <section id="expertise" class="py-24 md:py-32 relative border-t border-white/5 bg-bgSurface px-4 sm:px-6 lg:px-8">
+         <div class="max-w-7xl mx-auto w-full">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 reveal">
+               <div class="max-w-xl">
+                  <h2 class="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-textMuted mb-4">Keahlian &
+                     Teknologi</h2>
+                  <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">Perangkat Inti Saya.</h3>
+               </div>
+               <p class="text-textMuted mt-4 md:mt-0 max-w-sm text-sm sm:text-base md:text-right">Kombinasi teknologi
+                  modern untuk performa tangguh dan antarmuka presisi tinggi.</p>
+            </div>
+
+            <!-- Proportional Grid: Scales perfectly from mobile (2 cols) to large desktop (4 cols) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 reveal"
+               style="transition-delay: 100ms;">
+
+               <!-- Skill 1 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-html5 text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     HTML5 / CSS3</h4>
+               </div>
+
+               <!-- Skill 2 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-js text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     JavaScript</h4>
+               </div>
+
+               <!-- Skill 3 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-wordpress text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     Wordpress</h4>
+               </div>
+
+               <!-- Skill 4 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-solid fa-wind text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     Tailwind CSS</h4>
+               </div>
+
+               <!-- Skill 5 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-php text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     PHP</h4>
+               </div>
+
+               <!-- Skill 6 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-solid fa-database text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     MYSQL</h4>
+               </div>
+
+               <!-- Skill 7 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-git-alt text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     Git & CI/CD</h4>
+               </div>
+
+               <!-- Skill 8 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-bootstrap text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     Boostrap 5</h4>
+               </div>
+
+               <!-- Skill 9 -->
+               <div
+                  class="group surface-glass aspect-square rounded-2xl sm:rounded-3xl border border-white/5 hover:border-white/20 transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center text-center p-4">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <i
+                     class="fa-brands fa-java text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 text-textMuted group-hover:text-white transition-colors duration-500 transform group-hover:-translate-y-2"></i>
+                  <h4
+                     class="font-semibold text-sm sm:text-base md:text-lg text-white transform group-hover:-translate-y-1 transition-transform duration-500">
+                     Java</h4>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Proportional Fix: Replaced fixed vh with aspect ratios (aspect-video, aspect-[4/3]) -->
+      <section id="work" class="py-24 md:py-32 relative border-t border-white/5 px-4 sm:px-6 lg:px-8">
+         <div class="max-w-7xl mx-auto w-full">
+            <div class="mb-12 md:mb-20 reveal">
+               <h2 class="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-textMuted mb-4">Karya
+                  Terpilih</h2>
+               <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">Katalog Proyek.</h3>
+            </div>
+
+            <!-- Asymmetric Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+
+               <!-- Project 1 (Large - Spans full width on desktop) -->
+               <div class="md:col-span-2 group cursor-pointer reveal">
+                  <div
+                     class="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-2xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/Web-VR-SekolahDasar.png" alt="Website Virtual Reality Sekolah Dasar"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <!-- Hover Floating Button -->
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold"
+                           onclick="location.href='https://vr-sekolahdasar-vi.yobaseapp.me/public/index.php'">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 px-2">
+                     <div class="max-w-2xl">
+                        <h4
+                           class="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                           Website Virtual Reality Sekolah Dasar</h4>
+                        <p class="text-textMuted text-sm sm:text-base font-medium">Virtual Reality Sekolah Dasar Kelas
+                           VI merupakan media pembelajaran interaktif berbasis teknologi Virtual Reality (VR)
+                           yang dirancang untuk membantu siswa kelas VI Sekolah Dasar memahami materi pelajaran dengan
+                           cara yang lebih menarik,
+                           menyenangkan, dan imersif. Melalui pengalaman belajar dalam lingkungan virtual, siswa dapat
+                           mengeksplorasi berbagai
+                           materi secara visual sehingga meningkatkan pemahaman, kreativitas, dan minat belajar di era
+                           digital.</p>
+                     </div>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">PHP</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Boostrap
+                           5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">MYSQL</span>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 2 (Half width) -->
+               <div class="group cursor-pointer reveal">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/Aria Pratama Interior Exterior.png" alt="Website konstruksi"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://ariepratama-kontraktor.web.id/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Arie Pratama Interior & Exterior Design</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Mitra terpercaya untuk layanan
+                        konstruksi, renovasi, serta desain interior dan eksterior. Mengutamakan kualitas,
+                        ketelitian, dan kepuasan pelanggan dalam setiap proyek yang dikerjakan.</p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">PHP</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Boostrap
+                           5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">MYSQL</span>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 3 (Half width) -->
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/Almujahidin-Bimbel.png" alt="Website Bimbel Al Mujahidin"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://almujahidin-bimbel.kesug.com/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Almujahidin Bimbel</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Belajar Cerdas, Berakhlak Mulia.
+                        Bimbel Masjid Jami Al Mujahidin hadir untuk memberikan pendampingan belajar yang
+                        berkualitas, menyenangkan, dan bernilai Islami demi mendukung prestasi akademik serta
+                        pembentukan karakter generasi
+                        penerus bangsa.</p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">PHP</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Boostrap</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">MYSQL</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/SPK-SMK-DesaPutera.png" alt="Website SPK SMK Desa Putera"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://spk-jurusan-smkdesaputera.kesug.com/public/index.php'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        SPK SMK Desa Putera</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Belajar Cerdas, Berakhlak Mulia.
+                        SPK Pemilihan Jurusan SMK Desa Putera adalah sistem berbasis web yang membantu calon siswa
+                        memilih jurusan sesuai minat,
+                        bakat, dan kemampuan akademik melalui proses penilaian yang objektif, cepat, dan mudah dipahami.
+                     </p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">PHP</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Boostrap</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">MYSQL</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/demo-smks-mi-jkt.png" alt="Website SPK SMK Desa Putera"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://smksmuaraindonesia-jakarta.vercel.app/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Demo Website SMKS Muara Indonesia</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Belajar Cerdas, Berakhlak Mulia.
+                        Membangun Generasi Unggul, Terampil, dan Berkarakter. SMKS Muara Indonesia Jakarta hadir sebagai
+                        sekolah kejuruan yang
+                        mengutamakan kualitas pendidikan, penguasaan kompetensi, serta pembentukan karakter. Melalui
+                        pembelajaran yang inovatif
+                        dan berorientasi pada kebutuhan industri, kami mempersiapkan siswa menjadi lulusan yang siap
+                        bekerja, berwirausaha,
+                        maupun melanjutkan pendidikan ke jenjang yang lebih tinggi.
+                     </p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">HTML5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/simas-almujahidin.png" alt="Website SPK SMK Desa Putera"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://almujahidin-eta.vercel.app/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Demo Website Sistem Masjid Al Mujahidin</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">
+                        Demo Website Masjid Jami Al Mujahidin Kp. Lio Jatinegara Cakung Jakarta Timur
+                     </p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">HTML5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/kedai-kopi-nusantara.png" alt="Website SPK SMK Desa Putera"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://kedai-nusantarai-diet.vercel.app/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Demo Website Kopi Diet Nusantara</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Demo Website Kopi Diet Nusantara
+                     </p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">HTML5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="group cursor-pointer reveal" style="transition-delay: 150ms;">
+                  <div
+                     class="relative w-full aspect-[4/3] rounded-2xl sm:rounded-[2rem] overflow-hidden mb-5 sm:mb-6 border border-white/10 shadow-xl">
+                     <div
+                        class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 z-10">
+                     </div>
+                     <img src="assets/restoran-steak.png" alt="Website SPK SMK Desa Putera"
+                        class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out">
+
+                     <div
+                        class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <div onclick="location.href='https://almujahidin-eta.vercel.app/'"
+                           class="btn-depth px-5 py-2.5 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 pointer-events-auto text-sm sm:text-base font-semibold">
+                           View Project <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="px-2">
+                     <h4
+                        class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                        Demo Website Restoran Steak House</h4>
+                     <p class="text-textMuted text-xs sm:text-sm font-medium mb-4">Website Restoran Steak House
+                     </p>
+                     <div class="flex flex-wrap gap-2">
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">HTML5</span>
+                        <span
+                           class="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-borderSubtle text-[10px] sm:text-xs font-semibold text-gray-300 bg-white/5">Tailwind</span>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      <!-- Proportional Fix: Unified Contact layout, buttons span equally using CSS Grid -->
+      <section id="contact"
+         class="py-24 md:py-32 relative border-t border-white/5 bg-bgSurface overflow-hidden px-4 sm:px-6 lg:px-8">
+         <!-- Decoration -->
+         <div
+            class="absolute bottom-0 right-0 w-[80vw] max-w-[600px] aspect-square bg-white/5 rounded-full blur-[100px] pointer-events-none">
+         </div>
+
+         <div class="max-w-7xl mx-auto w-full relative z-10 reveal">
+            <div
+               class="surface-glass rounded-3xl sm:rounded-[3rem] p-8 sm:p-12 md:p-24 text-center border border-white/5 flex flex-col items-center">
+               <div
+                  class="w-14 h-14 sm:w-16 sm:h-16 bg-white/5 rounded-full flex items-center justify-center mb-6 sm:mb-8 border border-white/10">
+                  <i class="fa-solid fa-handshake-angle text-xl sm:text-2xl"></i>
+               </div>
+
+               <h2
+                  class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-4 sm:mb-6 leading-tight">
+                  Mulai Proyek Anda.</h2>
+               <p class="text-base sm:text-lg text-textMuted max-w-2xl mx-auto mb-10 sm:mb-12">
+                  Siap mengubah ide menjadi realitas digital? Mari diskusikan visi Anda.
+                  Saya terbuka untuk proyek baru dan peluang kolaborasi yang menantang.
+               </p>
+
+               <!-- Proportional Button Grid: 1 col on mobile, 3 cols on tablet+ -->
+               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mx-auto">
+                  <!-- Email Button -->
+                  <a href="mailto:ikoalmas27@gmail.com"
+                     class="btn-depth-accent py-4 sm:py-5 px-4 rounded-2xl flex flex-col items-center justify-center gap-2 group w-full">
+                     <i class="fa-solid fa-envelope text-lg sm:text-xl"></i>
+                     <span class="font-bold text-xs sm:text-sm uppercase tracking-widest text-center">Kirim Email</span>
+                  </a>
+
+                  <!-- WhatsApp Button -->
+                  <a href="https://wa.me/6289622482180" target="_blank"
+                     class="btn-depth py-4 sm:py-5 px-4 rounded-2xl flex flex-col items-center justify-center gap-2 text-white group w-full">
+                     <i
+                        class="fa-brands fa-whatsapp text-xl sm:text-2xl text-green-400 group-hover:scale-110 transition-transform"></i>
+                     <span class="font-bold text-xs sm:text-sm uppercase tracking-widest text-center">WhatsApp</span>
+                  </a>
+
+                  <!-- Github Button -->
+                  <a href="https://github.com/IkoAlmasDevGame" target="_blank"
+                     class="btn-depth py-4 sm:py-5 px-4 rounded-2xl flex flex-col items-center justify-center gap-2 text-white group w-full">
+                     <i class="fa-brands fa-github text-xl sm:text-2xl group-hover:scale-110 transition-transform"></i>
+                     <span class="font-bold text-xs sm:text-sm uppercase tracking-widest text-center">Github</span>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+         class="py-6 sm:py-8 border-t border-white/10 text-center text-xs sm:text-sm font-medium text-textMuted bg-bgPure px-4 sm:px-6 lg:px-8">
+         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 IkoAlmasDev. All rights reserved.</p>
+            <div class="flex items-center gap-5 sm:gap-6">
+               <a href="#" class="hover:text-white transition-colors"><i
+                     class="fa-brands fa-linkedin text-base sm:text-lg"></i></a>
+               <a href="#" class="hover:text-white transition-colors"><i
+                     class="fa-brands fa-github text-base sm:text-lg"></i></a>
+               <a href="#" class="hover:text-white transition-colors"><i
+                     class="fa-brands fa-twitter text-base sm:text-lg"></i></a>
+            </div>
+         </div>
+      </footer>
+
+      <script>
+         // --- Navbar Scroll Effect ---
+         const navbar = document.getElementById('navbar');
+         window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+               navbar.classList.add('py-2');
+               navbar.classList.remove('py-4');
+               // Optinal: Add extra backdrop blur logic here if needed
+            } else {
+               navbar.classList.add('py-4');
+               navbar.classList.remove('py-2');
+            }
+         });
+
+         // --- Mobile Menu Logic ---
+         const btnMenu = document.getElementById('mobile-menu-btn');
+         const mobileMenu = document.getElementById('mobile-menu');
+         let isMenuOpen = false;
+
+         btnMenu.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+               mobileMenu.classList.remove('hidden');
+               // Timeout to allow display:block to apply before opacity transition
+               setTimeout(() => {
+                  mobileMenu.classList.remove('opacity-0');
+                  mobileMenu.classList.add('opacity-100');
+               }, 10);
+               btnMenu.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
+            } else {
+               mobileMenu.classList.remove('opacity-100');
+               mobileMenu.classList.add('opacity-0');
+               setTimeout(() => {
+                  mobileMenu.classList.add('hidden');
+               }, 300);
+               btnMenu.innerHTML = '<i class="fa-solid fa-bars-staggered text-xl"></i>';
+            }
+         });
+
+         // Close menu when clicking links
+         const menuLinks = mobileMenu.querySelectorAll('a');
+         menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+               isMenuOpen = false;
+               mobileMenu.classList.remove('opacity-100');
+               mobileMenu.classList.add('opacity-0');
+               setTimeout(() => {
+                  mobileMenu.classList.add('hidden');
+               }, 300);
+               btnMenu.innerHTML = '<i class="fa-solid fa-bars-staggered text-xl"></i>';
+            });
+         });
+
+         // --- Scroll Reveal Animation (Intersection Observer) ---
+         const revealElements = document.querySelectorAll('.reveal');
+
+         const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                  entry.target.classList.add('active');
+                  // Optional: stop observing once revealed for one-time animation
+                  observer.unobserve(entry.target);
+               }
+            });
+         };
+
+         const revealOptions = {
+            threshold: 0.1, // trigger when 10% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+         };
+
+         const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+         revealElements.forEach(el => {
+            revealObserver.observe(el);
+         });
+
+         // Trigger reveal on load for elements already in viewport (e.g. Hero section)
+         setTimeout(() => {
+            revealElements.forEach(el => {
+               const rect = el.getBoundingClientRect();
+               if (rect.top < window.innerHeight) {
+                  el.classList.add('active');
+               }
+            });
+         }, 100);
+      </script>
+   </body>
+
+</html>
